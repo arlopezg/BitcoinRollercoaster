@@ -1,0 +1,20 @@
+$upArrow: green;
+$downArrow: red;
+
+.price-arrow {
+  display: inline-block;
+  border: 10px solid transparent;
+
+  &__up,
+  &__down {
+    display: inline-block;
+    width: 10px;
+    border-radius: 50%;
+  }
+  &__up {
+    border-top: 10px solid $upArrow;
+  }
+  &__down {
+    border-bottom: 10px solid $downArrow;
+  }
+}
