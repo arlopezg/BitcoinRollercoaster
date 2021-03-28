@@ -1,6 +1,15 @@
 .rollercoaster {
-  img {
-    border-radius: 4px;
-    transform: rotate(-90deg);
+  transition: 2s;
+  &--up {
+    transform: rotate(-180deg);
+    &__slow {
+      transform: rotate(225deg);
+    }
+  }
+  &--down {
+    transform: rotate(0deg);
+    &__slow {
+      transform: rotate(315deg);
+    }
   }
 }

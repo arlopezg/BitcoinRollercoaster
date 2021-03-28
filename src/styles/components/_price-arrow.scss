@@ -10,11 +10,21 @@ $downArrow: red;
     display: inline-block;
     width: 10px;
     border-radius: 50%;
+    margin: 0 10px;
   }
   &__up {
     border-top: 10px solid $upArrow;
   }
   &__down {
     border-bottom: 10px solid $downArrow;
+  }
+
+  &--text {
+    &__up {
+      color: $upArrow;
+    }
+    &__down {
+      color: $downArrow;
+    }
   }
 }
