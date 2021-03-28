@@ -1,23 +1,40 @@
 <template>
   <div class="price-arrow">
-    <span :class="'price-arrow__' + variance"></span>
+    <span :class="'price-arrow__' + direction"></span>
+    <small :class="'price-arrow--text__' + direction">{{ variance }}</small>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
+import { PriceService } from "../services/api";
+
 export default {
-  props: {
-    price: { type: Number, required: true },
-  },
   data() {
     return {
-      variance: "",
+      oldPrice: null,
+      priceService: new PriceService(),
     };
   },
+  computed: {
+    ...mapState(["price", "direction"]),
+    variance() {
+      return (this.price - this.oldPrice).toFixed(2);
+    },
+  },
+  methods: {
+    ...mapActions(["setDirection", "setSpeed"]),
+  },
   watch: {
-    price(newVal, previous) {
-      this.variance = newVal > previous ? "up" : "down";
-      console.log("Changes:", newVal - previous, this.variance);
+    price(current, previous) {
+      const { direction, speed } = this.priceService.getVarianceInfo(
+        current,
+        previous
+      );
+      this.setDirection(direction);
+      this.setSpeed(speed);
+      this.oldPrice = previous;
     },
   },
 };

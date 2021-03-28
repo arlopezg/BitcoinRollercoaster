@@ -1,30 +1,40 @@
 <template>
-  <div>
-    {{ price }}
-    <PriceArrowIndicator :price="price" />
-    <RollercoasterGif />
-    <PoweredBy />
-  </div>
+  <section>
+    <header>
+      <PriceTicker />
+    </header>
+    <main>
+      <RollercoasterGif />
+    </main>
+    <footer>
+      <PoweredBy />
+    </footer>
+  </section>
 </template>
 
 <script>
-import RollercoasterGif from "./components/RollercoasterGif";
+import { mapMutations } from "vuex";
+
 import PoweredBy from "./components/PoweredBy";
-import PriceArrowIndicator from "./components/PriceIndicatorArrow";
+import PriceTicker from "./components/PriceTicker";
+import RollercoasterGif from "./components/RollercoasterGif";
 
 import { PriceService } from "./services/api";
 
 export default {
   name: "App",
-  components: { PoweredBy, PriceArrowIndicator, RollercoasterGif },
+  components: { PoweredBy, PriceTicker, RollercoasterGif },
   data() {
     return {
       price: 0,
       priceService: new PriceService(),
     };
   },
+  methods: { ...mapMutations(["mutate"]) },
   created() {
-    this.priceService.getLivePrice((price) => (this.price = price));
+    this.priceService.getLivePrice((price) => {
+      this.mutate({ property: "price", with: price });
+    });
   },
   beforeUnmount() {
     this.priceService.stopListening();
