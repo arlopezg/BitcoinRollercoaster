@@ -16,10 +16,27 @@ export default class {
     this.socketsService.sendEvent({ event: "unsubscribe" });
   }
 
-  getVariance(newValue, previousValue) {
-    if (newValue > previousValue) {
-      return "up";
-    }
-    return "down";
+  getVarianceInfo(newValue, previousValue) {
+    const _getDirection = () => {
+      return newValue > previousValue ? "up" : "down";
+    };
+
+    const _getSpeed = () => {
+      const bigger = Math.max(newValue, previousValue);
+      const smaller = Math.min(newValue, previousValue);
+      const diff = bigger - smaller;
+
+      if (diff < 5) {
+        return "slow";
+      } else if (diff > 20) {
+        return "fast";
+      }
+      return "regular";
+    };
+
+    return {
+      direction: _getDirection(),
+      speed: _getSpeed(),
+    };
   }
 }
