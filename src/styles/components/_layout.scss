@@ -1,0 +1,16 @@
+body {
+  overflow: hidden;
+
+  #app {
+    margin: 0;
+    section {
+      align-items: center;
+      display: flex;
+      flex-flow: column wrap;
+      height: 100vh;
+      justify-content: space-around;
+      margin: 0 auto;
+      width: 100vw;
+    }
+  }
+}

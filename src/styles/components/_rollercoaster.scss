@@ -12,4 +12,12 @@
       transform: rotate(315deg);
     }
   }
+  img {
+    border-radius: 50%;
+    margin: 0 auto;
+    max-height: 400px;
+    max-width: 400px;
+    object-fit: cover;
+    width: 95%;
+  }
 }
