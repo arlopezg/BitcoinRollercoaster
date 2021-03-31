@@ -1,17 +1,20 @@
 <template>
   <div>
-    <span class="price">{{ price }}</span>
+    <span class="price" v-show="price">{{ formattedPrice }}</span>
     <PriceArrowIndicator :price="price" />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 import PriceArrowIndicator from "./PriceIndicatorArrow";
 
 export default {
   components: { PriceArrowIndicator },
-  computed: { ...mapState(["price"]) },
+  computed: {
+    ...mapState(["price"]),
+    ...mapGetters(["formattedPrice"]),
+  },
 };
 </script>

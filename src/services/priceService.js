@@ -16,8 +16,11 @@ export default class {
     this.socketsService.sendEvent({ event: "unsubscribe" });
   }
 
-  getVarianceInfo(newValue, previousValue) {
+  getVarianceInfo(newValue = 0, previousValue = 0) {
     const _getDirection = () => {
+      if (newValue === previousValue) {
+        return;
+      }
       return newValue > previousValue ? "up" : "down";
     };
 

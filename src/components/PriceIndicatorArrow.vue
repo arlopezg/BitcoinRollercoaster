@@ -1,7 +1,10 @@
 <template>
   <div class="price-arrow">
-    <span :class="'price-arrow__' + direction"></span>
-    <small :class="'price-arrow--text__' + direction">{{ variance }}</small>
+    <template v-if="dataIsLoaded">
+      <span :class="'price-arrow__' + direction"></span>
+      <small :class="'price-arrow--text__' + direction">{{ variance }}</small>
+    </template>
+    <span v-else>Waiting for data...</span>
   </div>
 </template>
 
@@ -22,10 +25,13 @@ export default {
     variance() {
       return (this.price - this.oldPrice).toFixed(2);
     },
+    dataIsLoaded() {
+      return [this.price, this.oldPrice].every(
+        (value) => typeof value === "number"
+      );
+    },
   },
-  methods: {
-    ...mapActions(["setDirection", "setSpeed"]),
-  },
+  methods: { ...mapActions(["setDirection", "setSpeed"]) },
   watch: {
     price(current, previous) {
       const { direction, speed } = this.priceService.getVarianceInfo(

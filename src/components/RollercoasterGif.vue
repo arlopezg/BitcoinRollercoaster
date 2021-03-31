@@ -10,8 +10,6 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  computed: {
-    ...mapState(["direction", "isSlow"]),
-  },
+  computed: { ...mapState(["direction", "isSlow"]) },
 };
 </script>

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 
 import PoweredBy from "./components/PoweredBy";
 import PriceTicker from "./components/PriceTicker";
@@ -30,10 +30,14 @@ export default {
       priceService: new PriceService(),
     };
   },
-  methods: { ...mapMutations(["mutate"]) },
+  methods: {
+    ...mapMutations(["mutate"]),
+    ...mapActions(["logTx"]),
+  },
   created() {
     this.priceService.getLivePrice((price) => {
       this.mutate({ property: "price", with: price });
+      this.logTx(price);
     });
   },
   beforeUnmount() {
