@@ -1,6 +1,6 @@
 <template>
   <section>
-    <header>
+    <header class="w-full">
       <PriceTicker />
     </header>
     <main>

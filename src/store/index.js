@@ -11,6 +11,19 @@ export default createStore({
     formattedPrice({ price }) {
       return formatMoney(price);
     },
+    buysAndSells({ txs }) {
+      return txs.reduce(
+        (counter = {}, tx) => {
+          if (tx.side === "buy") {
+            counter.buys++;
+            return counter;
+          }
+          counter.sells++;
+          return counter;
+        },
+        { buys: 0, sells: 0 }
+      );
+    },
   },
   mutations: {
     mutate(state, payload) {
