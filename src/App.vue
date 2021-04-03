@@ -35,10 +35,7 @@ export default {
     ...mapActions(["logTx"]),
   },
   created() {
-    this.priceService.getLivePrice((price) => {
-      this.mutate({ property: "price", with: price });
-      this.logTx(price);
-    });
+    this.priceService.getLivePrice(this.logTx);
   },
   beforeUnmount() {
     this.priceService.stopListening();

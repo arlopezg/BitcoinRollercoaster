@@ -1,6 +1,6 @@
 export default class {
   constructor() {
-    this.socketURL = "wss://ws.bitstamp.net";
+    this.socketURL = "wss://ws-feed.pro.coinbase.com";
     this.client = new WebSocket(this.socketURL);
     this.queue = [];
 
@@ -14,7 +14,7 @@ export default class {
     };
   }
 
-  sendEvent({ event = "unsubscribe", channel = "live_trades_btcusd" }) {
+  sendEvent({ event = "unsubscribe", channel = "BTC-USD" }) {
     if (this.client.readyState !== 1) {
       this.queue.push({ event, channel });
       return;
@@ -22,7 +22,7 @@ export default class {
 
     const options = {
       allowedEvents: ["subscribe", "unsubscribe"],
-      allowedChannels: ["live_trades_btcusd"],
+      allowedChannels: ["BTC-USD"],
     };
 
     const checks = [
@@ -39,8 +39,9 @@ export default class {
     });
 
     const payload = {
-      event: `bts:${event}`,
-      data: { channel },
+      type: event,
+      product_ids: [channel],
+      channels: [{ name: "ticker", product_ids: [channel] }],
     };
     this.client.send(JSON.stringify(payload));
   }

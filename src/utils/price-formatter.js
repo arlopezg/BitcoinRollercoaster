@@ -4,5 +4,5 @@ export default (amount = 0) => {
     currency: "USD",
   });
 
-  return _formatter.format(amount);
+  return _formatter.format(+amount);
 };

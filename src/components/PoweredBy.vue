@@ -1,6 +1,6 @@
 <template>
   <p>
     Powered by
-    <a href="https://www.bitstamp.net/" target="_blank">BitStamp</a>
+    <a href="https://pro.coinbase.com/" target="_blank">Coinbase Pro</a>
   </p>
 </template>

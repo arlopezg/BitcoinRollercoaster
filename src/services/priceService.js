@@ -7,8 +7,8 @@ export default class {
 
   getLivePrice(callback = null) {
     this.socketsService.sendEvent({ event: "subscribe" });
-    this.socketsService.listen(({ data }) => {
-      callback && callback(data.price);
+    this.socketsService.listen((data) => {
+      callback && callback(data);
     });
   }
 

@@ -26,6 +26,7 @@ export default createStore({
     },
     logTx({ commit, state }, tx = {}) {
       const { txs } = state;
+      commit("mutate", { property: "price", with: Number(tx.price) || 0 });
       commit("mutate", { property: "txs", with: [...txs, tx] });
     },
   },
