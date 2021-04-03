@@ -3,6 +3,8 @@
     <li>Buys: {{ buysAndSells.buys }}</li>
     <li>Sells: {{ buysAndSells.sells }}</li>
     <li>Buys per sell: {{ buysPerSell }}</li>
+    <li>Low: {{ priceRange.low }}</li>
+    <li>High: {{ priceRange.high }}</li>
   </ul>
 </template>
 
@@ -10,7 +12,7 @@
 import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["buysAndSells"]),
+    ...mapGetters(["buysAndSells", "priceRange"]),
     buysPerSell() {
       const { buys, sells } = this.buysAndSells;
       return (buys / sells).toFixed(2);

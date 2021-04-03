@@ -24,6 +24,15 @@ export default createStore({
         { buys: 0, sells: 0 }
       );
     },
+    priceRange({ txs }) {
+      const prices = txs
+        .filter(({ price }) => price)
+        .map(({ price }) => +price);
+      return {
+        high: formatMoney(Math.max(...prices)),
+        low: formatMoney(Math.min(...prices)),
+      };
+    },
   },
   mutations: {
     mutate(state, payload) {
