@@ -10,10 +10,14 @@ export default class {
     this.socketsService.listen((data) => {
       callback && callback(data);
     });
+    setTimeout(() => {
+      console.log('CLOSE')
+      // this.socketsService.close(); // ☠️ DONT COMMIT
+    }, 5500)
   }
 
   stopListening() {
-    this.socketsService.sendEvent({ event: "unsubscribe" });
+    this.socketsService.close();
   }
 
   getVarianceInfo(newValue = 0, previousValue = 0) {

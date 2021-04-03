@@ -14,14 +14,18 @@ export default class {
     };
   }
 
-  sendEvent({ event = "unsubscribe", channel = "BTC-USD" }) {
+  close() {
+    this.client.close();
+  }
+
+  sendEvent({ event = "", channel = "BTC-USD" }) {
     if (this.client.readyState !== 1) {
       this.queue.push({ event, channel });
       return;
     }
 
     const options = {
-      allowedEvents: ["subscribe", "unsubscribe"],
+      allowedEvents: ["subscribe"],
       allowedChannels: ["BTC-USD"],
     };
 

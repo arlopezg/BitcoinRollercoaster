@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="price--ticker">
+    <strong class="block">Current price:</strong>
     <span class="price" v-show="price">{{ formattedPrice }}</span>
     <PriceArrowIndicator :price="price" />
-    <BuysAndSells />
   </div>
 </template>
 
@@ -10,13 +10,23 @@
 import { mapGetters, mapState } from "vuex";
 
 import PriceArrowIndicator from "./PriceIndicatorArrow";
-import BuysAndSells from "./BuysAndSells";
 
 export default {
-  components: { BuysAndSells, PriceArrowIndicator },
+  components: { PriceArrowIndicator },
   computed: {
     ...mapState(["price"]),
     ...mapGetters(["formattedPrice"]),
   },
 };
 </script>
+
+<style scoped>
+.price--ticker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 9;
+}
+</style>
