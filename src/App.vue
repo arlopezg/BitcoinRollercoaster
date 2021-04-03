@@ -3,7 +3,7 @@
     <header class="w-full">
       <PriceTicker />
     </header>
-    <div content class="flex flex-col md:flex-row justify-between">
+    <div content class="flex flex-col md:flex-row justify-between items-center">
       <Statistics class="column__secondary order-2 md:order-1" />
       <main class="column_primary order-1">
         <RollercoasterGif />

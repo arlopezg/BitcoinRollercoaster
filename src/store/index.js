@@ -28,9 +28,17 @@ export default createStore({
       const prices = txs
         .filter(({ price }) => price)
         .map(({ price }) => +price);
+
+      const high = Math.max(...prices);
+      const low = Math.min(...prices);
+      const average = (high + low) / 2;
       return {
-        high: formatMoney(Math.max(...prices)),
-        low: formatMoney(Math.min(...prices)),
+        high: formatMoney(high),
+        low: formatMoney(low),
+        average: formatMoney(average),
+        averageNumeric: average,
+        highNumeric: high,
+        lowNumeric: low,
       };
     },
   },
