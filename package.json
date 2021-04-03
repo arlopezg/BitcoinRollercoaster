@@ -36,7 +36,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "engines": {
-    "node": "12.13.0"
+    "node": ">=12.13.0"
   },
   "eslintConfig": {
     "root": true,
