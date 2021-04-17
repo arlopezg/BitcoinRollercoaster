@@ -3,26 +3,13 @@ import { formatMoney } from "../utils";
 
 export default createStore({
   state: {
-    price: 0,
     direction: "",
-    txs: [],
+    price: 0,
+    txs: []
   },
   getters: {
     formattedPrice({ price }) {
       return formatMoney(price);
-    },
-    buysAndSells({ txs }) {
-      return txs.reduce(
-        (counter = {}, tx) => {
-          if (tx.side === "buy") {
-            counter.buys++;
-            return counter;
-          }
-          counter.sells++;
-          return counter;
-        },
-        { buys: 0, sells: 0 }
-      );
     },
     priceRange({ txs }) {
       const prices = txs
@@ -38,14 +25,37 @@ export default createStore({
         average: formatMoney(average),
         averageNumeric: average,
         highNumeric: high,
-        lowNumeric: low,
+        lowNumeric: low
       };
     },
+    buysAndSells({ txs }) {
+      return txs.reduce(
+        (counter = {}, tx) => {
+          if (tx.side === "buy") {
+            counter.buys++;
+            return counter;
+          }
+          counter.sells++;
+          return counter;
+        },
+        { buys: 0, sells: 0 }
+      );
+    },
+    getPriceTrendByTxs({ txs, price }) {
+      return (limitTo = txs.length) => {
+        const recentTxs = txs.reverse().slice(0, limitTo);
+
+        const sum = recentTxs.reduce((total, tx) => (total += tx.price), 0);
+        const avg = sum / limitTo;
+
+        return price > avg ? "up" : "down";
+      };
+    }
   },
   mutations: {
     mutate(state, payload) {
       state[payload.property] = payload.with;
-    },
+    }
   },
   actions: {
     setDirection({ commit }, direction = "") {
@@ -56,8 +66,9 @@ export default createStore({
     },
     logTx({ commit, state }, tx = {}) {
       const { txs } = state;
+      tx.price = Number(tx.price);
       commit("mutate", { property: "price", with: Number(tx.price) || 0 });
       commit("mutate", { property: "txs", with: [...txs, tx] });
-    },
-  },
+    }
+  }
 });
