@@ -16,7 +16,9 @@ body {
 
   div[content] {
     margin-top: 80px;
-    height: 85vh;
+    @media screen and (min-width: 640px) {
+      height: 75vh;
+    }
     > .column {
       &__primary {
         @apply md:order-2 w-full md:w-1/2 my-5;

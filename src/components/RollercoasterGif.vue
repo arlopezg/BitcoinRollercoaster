@@ -38,7 +38,7 @@ export default {
     },
   },
   mounted() {
-    setInterval(this.updateDirection, 2000);
+    setInterval(this.updateDirection, 5000);
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="py-2">
     <li>
       Powered by
       <a
