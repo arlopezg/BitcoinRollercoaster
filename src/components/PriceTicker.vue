@@ -17,6 +17,14 @@ export default {
     ...mapState(["price"]),
     ...mapGetters(["formattedPrice"]),
   },
+  watch: {
+    formattedPrice(currentPrice = 0) {
+      const { head } = document;
+      const title = head.querySelector("title");
+
+      title.innerText = `${currentPrice} - Bitcoin Rollercoaster`;
+    },
+  },
 };
 </script>
 

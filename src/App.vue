@@ -10,7 +10,7 @@
       </main>
       <Transactions class="column__secondary order-3 md:order-3" />
     </div>
-    <footer>
+    <footer class="fixed left-0 right-0 bottom-0">
       <PoweredBy />
     </footer>
   </section>

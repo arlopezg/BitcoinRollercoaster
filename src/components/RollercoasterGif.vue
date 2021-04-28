@@ -1,5 +1,5 @@
 <template>
-  <figure>
+  <figure :title="direction === 'up' ? 'Wheeee!' : 'Whooo!'">
     <div class="rollercoaster" :class="'rollercoaster--' + direction">
       <img
         src="../assets/bitcoin-rollercoaster.gif"
@@ -38,7 +38,7 @@ export default {
     },
   },
   mounted() {
-    setInterval(this.updateDirection, 5000);
+    setInterval(this.updateDirection, 2500);
   },
 };
 </script>
