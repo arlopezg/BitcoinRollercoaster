@@ -1,0 +1,10 @@
+.card {
+  header {
+    @apply border-solid border-b border-gray-200;
+    @apply font-bold;
+    @apply pb-2;
+  }
+  @apply bg-white;
+  @apply px-3 py-2;
+  @apply shadow rounded-sm;
+}
