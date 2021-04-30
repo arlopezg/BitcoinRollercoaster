@@ -25,11 +25,6 @@
         Alejandro López
       </a>
     </li>
-    <li class="bg-gray-800 text-white">
-      <a href="https://github.com/arlopezg/BitcoinRollercoaster">
-      View on GitHub
-      </a>
-    </li>
   </ul>
 </template>
 
