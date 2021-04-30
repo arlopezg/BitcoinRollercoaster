@@ -1,12 +1,18 @@
 <template>
-  <section class="text-left">
-    <strong class="mr-1">Recent orders:</strong>
-    <span v-for="(limit, index) in [15, 50, 100]" :key="limit">
-      <button type="button" class="text-blue-500" @click="maxRecentTxs = limit">
-        {{ limit }}
-      </button>
-      <span v-if="index < 2">, </span>
-    </span>
+  <section class="card text-left w-5/6">
+    <header>
+      <h4 class="inline mr-2">Recent orders</h4>
+      <span v-for="(limit, index) in [15, 50, 100]" :key="limit">
+        <button
+          type="button"
+          class="text-blue-500"
+          @click="maxRecentTxs = limit"
+        >
+          {{ limit }}
+        </button>
+        <span v-if="index < 2">, </span>
+      </span>
+    </header>
 
     <ul class="transactions--list">
       <li v-for="tx in recentTxs.reverse()" :key="tx.id">
@@ -17,10 +23,7 @@
         @ {{ tx.price }}
       </li>
     </ul>
-    <footer
-      v-if="recentTxs.length"
-      :class="{ 'invisible': streak.amount < 3 }"
-    >
+    <footer v-if="recentTxs.length" :class="{ invisible: streak.amount < 3 }">
       Streak: {{ streak.amount }} {{ streak.side }}s
     </footer>
   </section>

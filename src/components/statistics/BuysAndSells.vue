@@ -1,15 +1,15 @@
 <template>
   <ul class="flex flex-col align-start">
-    <li>Buys: {{ buysAndSells.buys }}</li>
-    <li>Sells: {{ buysAndSells.sells }}</li>
-    <li class="mb-2">Buys per sell: {{ buysPerSell }}</li>
+    <li>There have been {{ buysAndSells.buys }} buy orders and {{ buysAndSells.sells }} sell orders.</li>
+    <li class="my-3">Current buy:sell ratio is {{ buysPerSell }}.</li>
     <li v-for="(range, rangeKey) in formattedPriceRange" :key="rangeKey">
       <strong class="capitalize">{{ rangeKey }}:</strong>
       {{ range }}
       <small
         v-show="closerToCurrent === rangeKey"
-        class="text-opacity-50 font-bold"
-      >CLOSER TO CURRENT</small>
+        class="text-opacity-50 font-bold bg-yellow-400 px-1 rounded"
+        >CLOSER TO CURRENT</small
+      >
     </li>
   </ul>
 </template>
@@ -25,8 +25,8 @@ export default {
       return (buys / sells).toFixed(2);
     },
     formattedPriceRange() {
-      const { high, low, average } = this.priceRange;
-      return { high, low, average };
+      const { high, low, spread } = this.priceRange;
+      return { high, low, spread };
     },
     closerToCurrent() {
       const { price, priceRange } = this;

@@ -1,6 +1,7 @@
 .transactions {
   &--list {
     max-height: 360px;
-    overflow-y: scroll;
+    overflow: hidden;
+    overflow-y: auto;
   }
 }

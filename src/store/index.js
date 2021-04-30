@@ -19,13 +19,15 @@ export default createStore({
       const high = Math.max(...prices);
       const low = Math.min(...prices);
       const average = (high + low) / 2;
+      const spread = (high - low) / high * 100;
       return {
-        high: formatMoney(high),
-        low: formatMoney(low),
         average: formatMoney(average),
         averageNumeric: average,
+        high: formatMoney(high),
         highNumeric: high,
-        lowNumeric: low
+        low: formatMoney(low),
+        lowNumeric: low,
+        spread: spread.toFixed(2) + "%"
       };
     },
     buysAndSells({ txs }) {

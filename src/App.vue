@@ -4,14 +4,16 @@
       <PriceTicker />
     </header>
     <div content class="flex flex-col md:flex-row justify-between items-center">
-      <Statistics class="column__secondary order-2 md:order-1" />
+      <Statistics class="column__secondary order-2 md:order-1 m-3" />
       <main class="column_primary order-1">
         <RollercoasterGif />
       </main>
       <Transactions class="column__secondary order-3 md:order-3" />
     </div>
-    <footer class="fixed left-0 right-0 bottom-0">
-      <PoweredBy />
+
+    <footer class="md:flex justify-between w-full md:px-10 md:fixed bottom-0">
+      <Donate class="text-left" />
+      <PoweredBy class="py-3 w-full md:w-1/5" />
     </footer>
   </section>
 </template>
@@ -19,6 +21,7 @@
 <script>
 import { mapActions, mapMutations } from "vuex";
 
+import Donate from "./components/Donate";
 import PoweredBy from "./components/PoweredBy";
 import PriceTicker from "./components/PriceTicker";
 import RollercoasterGif from "./components/RollercoasterGif";
@@ -30,6 +33,7 @@ import { PriceService } from "./services/api";
 export default {
   name: "App",
   components: {
+    Donate,
     PoweredBy,
     PriceTicker,
     RollercoasterGif,

@@ -1,5 +1,5 @@
 <template>
-  <figure :title="direction === 'up' ? 'Wheeee!' : 'Whooo!'">
+  <figure :title="shout">
     <div class="rollercoaster" :class="'rollercoaster--' + direction">
       <img
         src="../assets/bitcoin-rollercoaster.gif"
@@ -30,6 +30,15 @@ export default {
     ...mapGetters(["buysAndSells", "getPriceTrendByTxs"]),
     priceTrend() {
       return this.getPriceTrendByTxs(this.txTrendLimit);
+    },
+    shout() {
+      const { direction } = this;
+
+      const onUp = "To the moon!";
+      const onDown = "Buy the dip!";
+
+      const shout = direction === "up" ? onUp : onDown;
+      return shout.toUpperCase();
     },
   },
   methods: {
