@@ -1,5 +1,6 @@
 <template>
-  <ul class="bg-blue-800 inline-block px-10 py-3 rounded-t-md transition duration-200"
+  <ul
+    class="bg-blue-800 inline-block md:rounded-t transform hover:scale-125 transition duration-400"
   >
     <li class="text-white">
       Powered by
@@ -11,15 +12,19 @@
         Coinbase Pro
       </a>
     </li>
+    <li>
+      <hr class="w-1/2 my-2 mx-auto opacity-50" />
+    </li>
     <li class="text-white">
       Made by
       <a
         href="https://alejandro-lopez.dev/"
         target="_blank"
-        class="font-bold text-white"
+        class="font-bold text-yellow-400"
       >
         Alejandro López
       </a>
     </li>
   </ul>
 </template>
+
