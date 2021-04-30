@@ -14,7 +14,14 @@ module.exports = {
   pwa,
   chainWebpack: config => {
     config.plugin("html").tap(args => {
+      args[0].meta = {
+        viewport: "width=device-width,initial-scale=1,user-scalable=no"
+      };
+      args[0].favicon = "./public/favicon.ico";
+      args[0].filename = "index.html";
+      args[0].inject = true;
       args[0].title = "Bitcoin Rollercoaster";
+
       return args;
     });
   }
