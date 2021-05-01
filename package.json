@@ -37,7 +37,8 @@
     "sass": "^1.32.8",
     "sass-loader": "10.1.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "vercel": "^21.3.3"
+    "vercel": "^21.3.3",
+    "webpack-bundle-analyzer": "^4.4.1"
   },
   "eslintConfig": {
     "root": true,
