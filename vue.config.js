@@ -1,6 +1,6 @@
 //vue.config.js
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const {CompressionWebpackPlugin} = require("compression-webpack-plugin")
+const CompressionPlugin = require("compression-webpack-plugin");
 
 const pwa = {
   theme_color: "#EE0003",
@@ -15,7 +15,12 @@ const pwa = {
 };
 module.exports = {
   pwa,
-  configureWebpack: { plugins: [new BundleAnalyzerPlugin()] },
+  configureWebpack: {
+    plugins: [
+      new BundleAnalyzerPlugin({ analyzerMode: "static" }),
+      new CompressionPlugin()
+    ]
+  },
   chainWebpack: config => {
     config.plugin("html").tap(args => {
       args[0].meta = {
