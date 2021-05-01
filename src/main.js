@@ -3,9 +3,17 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import store from "./store";
 
-import "./styles/main.scss";
-import './registerServiceWorker'
+import VueGtag from "vue-gtag-next";
 
-createApp(App)
-  .use(store)
-  .mount("#app");
+import "./styles/main.scss";
+import "./registerServiceWorker";
+
+const app = createApp(App);
+
+app.use(store);
+
+if (process.env.VUE_APP_GA_MEASUREMENT_ID) {
+  app.use(VueGtag, { property: { id: process.env.VUE_APP_GA_MEASUREMENT_ID } });
+}
+
+app.mount("#app");
