@@ -2,7 +2,7 @@
   transform: rotate(-90deg);
   transition: 2s;
   &--up {
-    transform: rotate(-180deg);
+    transform: rotate(-181deg);
     &__slow {
       transform: rotate(225deg);
     }
@@ -13,7 +13,7 @@
       transform: rotate(315deg);
     }
   }
-  img {
+  video {
     border-radius: 50%;
     margin: 0 auto;
     height: 240px;

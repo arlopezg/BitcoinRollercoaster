@@ -2,6 +2,15 @@
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const CompressionPlugin = require("compression-webpack-plugin");
 
+const { mode = "env" } = process.env;
+
+const plugins = [];
+
+if (mode === "production") {
+  plugins.push(new BundleAnalyzerPlugin({ analyzerMode: "static" }));
+  plugins.push(new CompressionPlugin());
+}
+
 const pwa = {
   theme_color: "#EE0003",
   background_color: "#ffffff",
@@ -15,12 +24,7 @@ const pwa = {
 };
 module.exports = {
   pwa,
-  configureWebpack: {
-    plugins: [
-      new BundleAnalyzerPlugin({ analyzerMode: "static" }),
-      new CompressionPlugin()
-    ]
-  },
+  configureWebpack: { plugins },
   chainWebpack: config => {
     config.plugin("html").tap(args => {
       args[0].meta = {
