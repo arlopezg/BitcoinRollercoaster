@@ -1,7 +1,7 @@
 <template>
   <figure :title="shout">
     <div class="rollercoaster" :class="'rollercoaster--' + direction">
-      <video autoplay loop class="h-5/6 md:h-full">
+      <video autoplay loop autobuffer muted playsinline class="h-5/6 md:h-full">
         <source src="../assets/bitcoin-rollercoaster.webm" type="video/webm" />
         {{ shout }}
       </video>
@@ -46,6 +46,9 @@ export default {
     },
   },
   mounted() {
+    const videoEl = this.$el.querySelector("video");
+    videoEl.play()
+    console.log('videoEl', videoEl)
     setInterval(this.updateDirection, 2500);
   },
 };
