@@ -34,8 +34,7 @@ module.exports = {
         "og:type": "website",
         "og:url": "https://bitcoinrollercoaster.page/",
         "og:title": "Bitcoin Rollercoaster",
-        "og:image":
-          "https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
+        "og:image": "https://bitcoinrollercoaster.page/favicon-500x500.png"
       };
       args[0].favicon = "./public/favicon.ico";
       args[0].filename = "index.html";
